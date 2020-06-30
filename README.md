@@ -31,6 +31,54 @@ Installing docker on windows:
 
 -> Client makes API calls to Daemon. Daemon implements the docker remote APIs.
 
+ Docker on Linux:
+ ----------------
+ Inorder to use Docker in Linux environment, we have to install docker in linux machine. We have to set JAVA_HOME and Maven home environment variables to inorder to run any     java appliacation using docker. Now we will see how to set JAVA_HOME and MAVEN home variables and how to update PATH variable with these details.
+ 
+ Set JAVA_HOME path in linux:
+ ----------------------------
+ To check if JAVA_HOME is already set, Open Console and execute below command
+ 	
+	echo $JAVA_HOME
+
+If output is a path , then your JAVA_HOME is set , make sure the path is correct. If output is empty, then execute following steps.
+Make sure you have installed Java already.
+
+	1. find /usr/lib/jvm/java-1.x.x-openjdk
+
+	2. sudo vim /etc/profile
+
+	   Prepend sudo if logged in as not-privileged user, ie. sudo vim
+
+	   Press 'i' to get in insert mode
+   	   add:
+
+		export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+
+		export PATH=$JAVA_HOME/bin:$PATH
+		
+	3.use source /etc/profile to apply changes immediately in your current shell
+		
+Now verify JAVA_HOME using echo command as shown in above.
+
+set MAVEN_HOME path in linux:
+----------------------------
+open /etc/profile. USE sudo vim /etc/profile command to open that and insert following commands:
+
+	export M2_HOME=/usr/share/maven
+ 
+	export M2=$M2_HOME/bin
+
+with M2_Home path corresponding with the location of your extracted Maven files.
+
+Now append the M2 variable to the system path:
+
+	export PATH=$M2:$PATH 
+
+save and exit file
+
+	use source /etc/profile to apply changes immediately in your current shell
+
  Docker commands:
  ---------------
  
@@ -91,6 +139,8 @@ Use below links to know more about dockerizing spring boot app:
 http://myjavablog.com/2018/08/21/dockerizing-a-spring-boot-with-mysql-application/
 
 https://www.callicoder.com/spring-boot-docker-example/
+
+https://www.linuxnix.com/what-is-dockerfile-and-how-to-create-docker-images/
 
 for data persistence using docker volume use below links
 
